@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+<!-- https://www.ssllabs.com/ssltest/analyze.html-->
+<!-- www.zoo.gov.tw 的CA是中華電信簽的 path1合法但path2有問題 , web與ios皆可過, 只有android不行-->
+<!-- 判斷無安全議題故於中華電信更新前先加入信任-->
+        <domain includeSubdomains="true">www.zoo.gov.tw</domain>
+        <trust-anchors>
+            <certificates src="@raw/zoo"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
