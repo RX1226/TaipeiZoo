@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         val reader = CSVReader(InputStreamReader(assets.open("用+植物資料+20170905+加座標檔_新增10種熱雨館植物資料1090818.csv")))
 
         val rows = reader.readAll()
-        for (row in rows) {
+        for (row in rows.stream().skip(1)) { //跳過第一筆標題
             plantData.add(
                 Plant(
                     row[0], // F_Name_Ch
@@ -118,13 +118,13 @@ class MainActivity : AppCompatActivity() {
     fun openHouseDetailPage(house: House) {
         supportFragmentManager.beginTransaction().replace(
             R.id.content,
-            HouseDetailFragment(),
+            HouseDetailFragment.newInstance(house),
             "HOME_DETAIL"
         ).commit()
         binding.include.imgMenu.setImageResource(R.drawable.ic_back)
     }
 
-    fun openPlantDetailPage() {
+    fun openPlantDetailPage(plant: Plant) {
         supportFragmentManager.beginTransaction().add(
             R.id.content,
             PlantDetailFragment(),

@@ -2,4 +2,6 @@
     <string name="app_name">TaipeiZoo</string>
 
     <string name="title_house">台北市立動物園</string>
+    <string name="open_url">在網頁開啟</string>
+    <string name="plant_info">植物資料</string>
 </resources>
