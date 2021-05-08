@@ -6,7 +6,7 @@ import com.rx.application.model.House
 import com.rx.application.model.Plant
 
 class MainViewModel : ViewModel() {
-    lateinit var currentTitle: String
+    var currentTitle: MutableLiveData<String> = MutableLiveData()
     var houseData: MutableLiveData<MutableList<House>> = MutableLiveData()
     var plantData: MutableLiveData<MutableList<Plant>> = MutableLiveData()
 }

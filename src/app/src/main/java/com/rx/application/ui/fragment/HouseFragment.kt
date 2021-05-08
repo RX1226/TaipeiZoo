@@ -42,6 +42,7 @@ class HouseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(activity as MainActivity).get(MainViewModel::class.java)
+        viewModel.currentTitle.postValue(getString(R.string.title_house))
         viewModel.houseData.observe(viewLifecycleOwner, Observer {
             viewModel.houseData.value?.let { (binding.recycler.adapter as Adapter).updateData(it) }
             Log.d("TAG", viewModel.houseData.value.toString())
@@ -50,6 +51,7 @@ class HouseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.recycler.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.recycler.adapter = activity?.let { Adapter(it) }
         binding.recycler.setHasFixedSize(true)
@@ -82,9 +84,9 @@ class HouseFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val data = datas.get(position)
             Glide.with(activity).load(data.pic).into(holder.img)
-            holder.txt_name.setText(data.name)
-            holder.txt_desc.setText(data.info)
-            holder.txt_time.setText(data.memo)
+            holder.txt_name.text = data.name
+            holder.txt_desc.text = data.info
+            holder.txt_time.text = data.memo
             holder.btn_forward.setOnClickListener {
                 (activity as MainActivity?)?.openHouseDetailPage(data)
             }

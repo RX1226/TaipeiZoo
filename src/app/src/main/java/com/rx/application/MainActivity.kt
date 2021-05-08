@@ -28,9 +28,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         lifecycle.addObserver(LifeObserver())
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.include.imgMenu.setOnClickListener{onBackPressed()}
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.currentTitle.observe(this, {
+            binding.include.txtTitle.text = it
+            when(it){
+                getString(R.string.title_house) -> {
+                    binding.include.imgMenu.visibility = View.GONE
+                }
+                else -> {
+                    binding.include.imgMenu.visibility = View.VISIBLE
+                }
+            }
+        })
+
         openHousePage()
 
         readHouseData()
@@ -109,32 +124,21 @@ class MainActivity : AppCompatActivity() {
     fun openHousePage() {
         supportFragmentManager.beginTransaction().replace(
             R.id.content,
-            HouseFragment.newInstance(),
-            "HOUSE"
+            HouseFragment.newInstance()
         ).commit()
-        binding.include.txtTitle.setText(R.string.title_house)
-        binding.include.imgMenu.setImageResource(R.drawable.ic_menu)
     }
 
     fun openHouseDetailPage(house: House) {
         supportFragmentManager.beginTransaction().replace(
             R.id.content,
-            HouseDetailFragment.newInstance(house),
-            "HOME_DETAIL"
-        ).commit()
-        binding.include.imgMenu.setImageResource(R.drawable.ic_back)
+            HouseDetailFragment.newInstance(house)
+        ).addToBackStack(house.name).commit()
     }
 
     fun openPlantDetailPage(plant: Plant) {
         supportFragmentManager.beginTransaction().add(
             R.id.content,
-            PlantDetailFragment.newInstance(plant),
-            "PLANT_DETAIL"
-        ).commit()
-        binding.include.imgMenu.setImageResource(R.drawable.ic_back)
-    }
-
-    fun openPage(view: View) {
-
+            PlantDetailFragment.newInstance(plant)
+        ).addToBackStack(plant.name).commit()
     }
 }

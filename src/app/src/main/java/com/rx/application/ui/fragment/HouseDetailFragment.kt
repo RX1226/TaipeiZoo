@@ -67,6 +67,7 @@ class HouseDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(activity as MainActivity).get(MainViewModel::class.java)
+        viewModel.currentTitle.postValue(house?.name)
         viewModel.plantData.observe(viewLifecycleOwner, Observer {
             val plantInHouse = arrayListOf<Plant>()
             for(plan in viewModel.plantData.value!!){
@@ -121,8 +122,8 @@ class HouseDetailFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val data = datas.get(position)
             Glide.with(activity).load(data.pic1Url).into(holder.img)
-            holder.txt_name.setText(data.name)
-            holder.txt_desc.setText(data.alias)
+            holder.txt_name.text = data.name
+            holder.txt_desc.text = data.alias
             holder.btn_forward.setOnClickListener {
                 (activity as MainActivity?)?.openPlantDetailPage(data)
             }
