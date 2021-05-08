@@ -89,7 +89,8 @@ class MainActivity : AppCompatActivity() {
                     row[14], // F_Pic01_ALT
                     row[15], // F_Pic01_URL
                     row[16], // F_Pic02_ALT
-                    row[17] // F_Pic02_URL
+                    row[17], // F_Pic02_URL
+                    row[33] //F_Update
                 )
             )
         }
@@ -127,7 +128,7 @@ class MainActivity : AppCompatActivity() {
     fun openPlantDetailPage(plant: Plant) {
         supportFragmentManager.beginTransaction().add(
             R.id.content,
-            PlantDetailFragment(),
+            PlantDetailFragment.newInstance(plant),
             "PLANT_DETAIL"
         ).commit()
         binding.include.imgMenu.setImageResource(R.drawable.ic_back)

@@ -29,11 +29,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent">
             <TextView
+                style="@style/TextContent"
                 android:id="@+id/txt_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
@@ -41,26 +38,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
+                style="@style/TextSubContent"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="2dp"
                 android:id="@+id/txt_desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:textColor="@color/gray_56"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_name"/>
             <TextView
+                style="@style/TextSubContent"
                 android:layout_marginStart="2dp"
                 android:layout_marginBottom="2dp"
                 android:id="@+id/txt_time"
                 android:layout_gravity="bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/gray_56"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

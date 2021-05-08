@@ -71,6 +71,11 @@
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_e0"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

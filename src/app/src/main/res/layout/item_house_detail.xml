@@ -31,19 +31,15 @@
             android:layout_weight="1"
             android:layout_height="match_parent">
             <TextView
+                style="@style/TextContent"
                 android:id="@+id/txt_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_width="match_parent" />
             <TextView
+                style="@style/TextSubContent"
                 android:id="@+id/txt_desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="@color/gray_56" />
+                android:ellipsize="end" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
