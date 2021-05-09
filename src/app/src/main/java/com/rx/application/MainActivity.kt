@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.opencsv.CSVReader
 import com.rx.application.databinding.ActivityMainBinding
@@ -36,17 +37,26 @@ class MainActivity : AppCompatActivity() {
                     binding.include.imgMenu.visibility = View.GONE
                 }
                 else -> {
+                    binding.include.imgMenu.setImageResource(R.drawable.ic_back)
                     binding.include.imgMenu.visibility = View.VISIBLE
                 }
             }
         })
-        readHouseData()
-        readPlantData()
+        Thread(){
+            val houseData = readHouseData()
+            runOnUiThread {
+                viewModel.houseData.value = houseData
+            }
+            val plantData = readPlantData()
+            runOnUiThread {
+                viewModel.plantData.value = plantData
+            }
+        }.start()
 
         openHousePage()
     }
 
-    private fun readHouseData(){ //use read line and split to read
+    private fun readHouseData() : MutableList<House> { //use read line and split to read
         val houseData = arrayListOf<House>()
         val inputStreamReader = InputStreamReader(
             assets.open("館區介紹_20210326.csv"), StandardCharsets.UTF_8
@@ -70,13 +80,13 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        viewModel.houseData.value = houseData
 //        Log.d("TAG", viewModel.houseData.value.toString())
         inputStreamReader.close()
         reader.close()
+        return houseData;
     }
 
-    private fun readPlantData(){ //use open csv to read
+    private fun readPlantData() : MutableList<Plant>{ //use open csv to read
         val plantData = arrayListOf<Plant>()
         val reader = CSVReader(InputStreamReader(assets.open("用+植物資料+20170905+加座標檔_新增10種熱雨館植物資料1090818.csv")))
 
@@ -103,9 +113,9 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        viewModel.plantData.value = plantData
 //        Log.d("TAG", viewModel.plantData.value.toString())
         reader.close()
+        return plantData
     }
 
     fun openHousePage() {
