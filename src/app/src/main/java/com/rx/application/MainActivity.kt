@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.opencsv.CSVReader
 import com.rx.application.databinding.ActivityMainBinding
@@ -119,23 +118,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openHousePage() {
-        supportFragmentManager.beginTransaction().replace(
-            R.id.content,
-            HouseFragment.newInstance()
-        ).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, HouseFragment.newInstance())
+            .commit()
     }
 
     fun openHouseDetailPage(house: House) {
-        supportFragmentManager.beginTransaction().replace(
-            R.id.content,
-            HouseDetailFragment.newInstance(house)
-        ).addToBackStack(house.name).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, HouseDetailFragment.newInstance(house))
+            .addToBackStack(house.name)
+            .commit()
     }
 
     fun openPlantDetailPage(plant: Plant) {
-        supportFragmentManager.beginTransaction().add(
-            R.id.content,
-            PlantDetailFragment.newInstance(plant)
-        ).addToBackStack(plant.name).commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.left_to_right, R.anim.right_to_left, R.anim.left_to_right, R.anim.right_to_left)
+            .add(R.id.content, PlantDetailFragment.newInstance(plant))
+            .addToBackStack(plant.name)
+            .commit()
     }
 }
