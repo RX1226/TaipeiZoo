@@ -75,9 +75,15 @@ class HouseDetailFragment : Fragment() {
                     plantInHouse.add(plan)
                 }
             }
-            plantInHouse.let { (
-                    binding.recycler.adapter as Adapter).updateData(it) }
-            Log.d("TAG", viewModel.plantData.value.toString())
+            if(plantInHouse.size == 0){
+                binding.txtNoPlant.visibility = View.VISIBLE
+            }else {
+                binding.txtNoPlant.visibility = View.GONE
+                plantInHouse.let { (
+                            binding.recycler.adapter as Adapter).updateData(it)
+                }
+                Log.d("TAG", viewModel.plantData.value.toString())
+            }
         })
     }
 

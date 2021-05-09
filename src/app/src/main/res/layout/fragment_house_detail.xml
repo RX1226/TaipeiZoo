@@ -60,12 +60,17 @@
                 android:layout_height="8dp"/>
 
             <TextView
+                style="@style/TextContent"
                 android:layout_margin="16dp"
                 android:text="@string/plant_info"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_no_plant"
+                style="@style/TextSubContent"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/no_plant" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"

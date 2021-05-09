@@ -6,6 +6,7 @@
     <!--fragment_house_detail-->
     <string name="open_url">在網頁開啟</string>
     <string name="plant_info">植物資料</string>
+    <string name="no_plant">本館無展出植物</string>
 
     <!--fragment_plant_detail-->
     <string name="alias">別名</string>
