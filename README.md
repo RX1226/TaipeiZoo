@@ -45,15 +45,14 @@ https://fonts.google.com/icons?selected=Material+Icons
 
 使用Kotlin並使用MVC架構, 所用的第三方Lib皆有確認授權方式
 
-1. 採用Activity內用Fragment的方式呈現, 未來會導入Navigation方式切換Activity
+1. 採用Activity內用Fragment的方式呈現並加入基礎進場動畫, 未來會導入Navigation方式切換Activity
 
 ```
-    fun openHousePage() {
-        supportFragmentManager.beginTransaction().replace(
-            R.id.content,
-            HouseFragment.newInstance()
-        ).commit()
-    }
+supportFragmentManager.beginTransaction()
+    .setCustomAnimations(R.anim.left_to_right, R.anim.right_to_left, R.anim.left_to_right, R.anim.right_to_left)
+    .add(R.id.content, PlantDetailFragment.newInstance(plant))
+    .addToBackStack(plant.name)
+    .commit()
 ```
 2. 資料採用opencsv與傳統方式來處理csv資料
 
