@@ -1,17 +1,15 @@
 package com.rx.application.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.rx.application.MainActivity
-import com.rx.application.MainViewModel
+import com.rx.application.viewmodel.MainViewModel
 import com.rx.application.R
 import com.rx.application.databinding.FragmentPlantDetailBinding
 import com.rx.application.model.Plant

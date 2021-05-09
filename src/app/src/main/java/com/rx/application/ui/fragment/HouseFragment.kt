@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rx.application.MainActivity
-import com.rx.application.MainViewModel
+import com.rx.application.viewmodel.MainViewModel
 import com.rx.application.R
 import com.rx.application.databinding.FragmentHouseBinding
 import com.rx.application.model.House
